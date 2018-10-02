@@ -1,7 +1,12 @@
 # lectures-fall2018
 
-A repository hosting materials for a lecture series aimed at undergraduates offered during the Fall quarter in 2018.
+A repository hosting materials for a lecture series aimed at undergraduates offered at the University of Chicago during the Fall quarter in 2018.
 The modules contained herein are meant to aid students through a series of lectures describing technical computing techniques often used in gravitational wave analyses. 
+
+## lecture notes
+
+Some lecture notes can be found within this repostitory.
+Others can be found in [Google Drive](https://drive.google.com/drive/folders/1xwmOKxjHyTkvSpeAOS_-NaUv-15uKVEA).
 
 ## installation
 
