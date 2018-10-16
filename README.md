@@ -1,19 +1,18 @@
 # lectures-fall2018
 
-A repository hosting materials for a lecture series aimed at undergraduates offered at the University of Chicago during the Fall quarter in 2018.
-The modules contained herein are meant to aid students through a series of lectures describing technical computing techniques often used in gravitational wave analyses. 
-
 **Please fill out [this short survey](https://goo.gl/forms/deUMrr7leHhrq0eo1)!**
+
+This repository hosts materials for a lecture series aimed at undergraduates offered at the University of Chicago during the Fall quarter in 2018.
+The modules contained herein are meant to aid students through a series of lectures describing technical computing techniques often used in gravitational wave analyses. 
 
 ## lecture notes
 
-Some lecture notes can be found within this repostitory.
+Some lecture notes can be found within [this repostitory](https://github.com/uchicago-gw/lectures-fall2018/tree/master/lecture_notes).
 Others can be found in [Google Drive](https://drive.google.com/drive/folders/1xwmOKxjHyTkvSpeAOS_-NaUv-15uKVEA).
 
 ## syllabus and futher reading
 
   * Oct 17: Introduction
-
     * Lecturer: [Zoheyr Doctor](zdoctor@uchicago.edu)
     * lecture notes: ...
     * further reading
@@ -31,7 +30,7 @@ Others can be found in [Google Drive](https://drive.google.com/drive/folders/1xw
   * Oct 31: Fourier Analysis
 
     * Lecturer: [Reed Essick](reedessick@uchicago.edu)
-    * lecture notes: ...
+    * [lecture notes](https://github.com/uchicago-gw/lectures-fall2018/blob/master/lecture_notes/fourier_analysis.md)
     * further reading
 
         * ...
@@ -63,7 +62,7 @@ Others can be found in [Google Drive](https://drive.google.com/drive/folders/1xw
   * Nov 28: Time-series Analysis and Basci Parameter Estimation
 
     * Lecturer: [Reed Essick](reedessick@uchicago.edu)
-    * lecture notes: ...
+    * [lecture notes](https://github.com/uchicago-gw/lectures-fall2018/blob/master/lecture_notes/stationary_gaussian_timeseries.md)
     * further reading
 
         * ...
@@ -77,6 +76,9 @@ Others can be found in [Google Drive](https://drive.google.com/drive/folders/1xw
         * ...
 
 ## installation
+
+We highly recommend you use Python notebooks with standard anaconda installations.
+However, if you are comfortable with other IDEs, all our modules should work with relatively standard dependencies (numpy, scipy, etc).
 
 ### anaconda
 
