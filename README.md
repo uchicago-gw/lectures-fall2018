@@ -3,12 +3,91 @@
 A repository hosting materials for a lecture series aimed at undergraduates offered at the University of Chicago during the Fall quarter in 2018.
 The modules contained herein are meant to aid students through a series of lectures describing technical computing techniques often used in gravitational wave analyses. 
 
+**Please fill out [this short survey](https://goo.gl/forms/deUMrr7leHhrq0eo1)!**
+
 ## lecture notes
 
 Some lecture notes can be found within this repostitory.
 Others can be found in [Google Drive](https://drive.google.com/drive/folders/1xwmOKxjHyTkvSpeAOS_-NaUv-15uKVEA).
 
+## syllabus and futher reading
+
+  * Oct 17: Introduction
+
+    * Lecturer: [Zoheyr Doctor](zdoctor@uchicago.edu)
+    * lecture notes: ...
+    * further reading
+
+        * ...
+
+  * Oct 24: Stellar Structure and Neutron Stars
+
+    * Lecturer: [Phil Landry](landryp@uchicago.edu)
+    * lecture notes: ...
+    * further reading
+
+        * ...
+
+  * Oct 31: Fourier Analysis
+
+    * Lecturer: [Reed Essick](reedessick@uchicago.edu)
+    * lecture notes: ...
+    * further reading
+
+        * ...
+
+  * Nov 7: Initial Value Problems and GW Sources
+
+    * Lecturer: [Zoheyr Doctor](zdoctor@uchicago.edu)
+    * lecture notes: ...
+    * further reading
+
+        * ...
+
+  * Nov 14: Cosmology
+
+    * Lecturer: [Maya Fishbach](mfishbach@uchicago.edu)
+    * lecture notes: ...
+    * further reading
+
+        * ...
+
+  * Nov 21: Tolman-Oppenheimer-Volkoff Equations
+
+    * Lecturer: [Phil Landry](landryp@uchicago.edu)
+    * lecture notes: ...
+    * further reading
+
+        * ...
+
+  * Nov 28: Time-series Analysis and Basci Parameter Estimation
+
+    * Lecturer: [Reed Essick](reedessick@uchicago.edu)
+    * lecture notes: ...
+    * further reading
+
+        * ...
+
+  * Dec 5: Monte-Carlo Methods and the Hubble Constant
+
+    * Lecturer: [Maya Fishbach](mfishbach@uchicago.edu)
+    * lecture notes: ...
+    * further reading
+
+        * ...
+
 ## installation
+
+### anaconda
+
+(Ana)conda installation instructions are available [here](https://conda.io/docs/user-guide/install/index.html).
+There are separate instructions for various OSs
+
+  * [Windows](https://conda.io/docs/user-guide/install/windows.html)
+  * [MacOS](https://conda.io/docs/user-guide/install/macos.html) (ask Zoheyr or Maya for help if needed)
+  * [Linux](https://conda.io/docs/user-guide/install/linux.html) (ask Reed or Phil for help if needed)
+
+### this repository
 
 This repository can be installed via standard tools
 
