@@ -1,5 +1,7 @@
 # lectures-fall2018
 
+Lectures will be held in **[KPTC 206](https://www.google.com/maps/place/Kersten+Physics+Teaching+Center/@41.7910228,-87.6037179,17z/data=!3m1!4b1!4m5!3m4!1s0x880e293e862a1b5f:0x3726b2d1e371c9b8!8m2!3d41.7910228!4d-87.6015292)** on **Wednesdays at 7pm** throughout the quarter.
+
 **Please fill out [this short survey](https://goo.gl/forms/deUMrr7leHhrq0eo1)!**
 
 This repository hosts materials for a lecture series aimed at undergraduates offered at the University of Chicago during the Fall quarter in 2018.
