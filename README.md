@@ -62,6 +62,17 @@ Others can be found in [Google Drive](https://drive.google.com/drive/folders/1xw
     * further reading
         * ...
 
+### possible final projects
+
+As part of this lecture series, you will be expected to complete a small project.
+Please check with one of the lecturers if you have a specific idea you'd like to pursue.
+Below, we've listed a few possibilities.
+
+  * a few-parameter search for Gravitational Waves in stationary colored Gaussian noise
+  * inferring Hubble's constant using real, publicly available [GW170817 data](https://www.gw-openscience.org/events/GW170817/)
+  * determining the mass-radius, mass-lambda curves for a few neutron star equations of state
+  * ...
+
 ## installation
 
 We highly recommend you use Python notebooks with standard anaconda installations.
