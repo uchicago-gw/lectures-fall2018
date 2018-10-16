@@ -17,36 +17,43 @@ Others can be found in [Google Drive](https://drive.google.com/drive/folders/1xw
     * lecture notes: ...
     * further reading
         * ...
+
   * Oct 24: Stellar Structure and Neutron Stars
     * Lecturer: [Phil Landry](landryp@uchicago.edu)
     * lecture notes: ...
     * further reading
         * ...
+
   * Oct 31: Fourier Analysis
     * Lecturer: [Reed Essick](reedessick@uchicago.edu)
     * [lecture notes](https://github.com/uchicago-gw/lectures-fall2018/blob/master/lecture_notes/fourier_analysis.md)
     * further reading
         * ...
+
   * Nov 7: Initial Value Problems and GW Sources
     * Lecturer: [Zoheyr Doctor](zdoctor@uchicago.edu)
     * lecture notes: ...
     * further reading
         * ...
+
   * Nov 14: Cosmology
     * Lecturer: [Maya Fishbach](mfishbach@uchicago.edu)
     * lecture notes: ...
     * further reading
         * ...
+
   * Nov 21: Tolman-Oppenheimer-Volkoff Equations
     * Lecturer: [Phil Landry](landryp@uchicago.edu)
     * lecture notes: ...
     * further reading
         * ...
+
   * Nov 28: Time-series Analysis and Basci Parameter Estimation
     * Lecturer: [Reed Essick](reedessick@uchicago.edu)
     * [lecture notes](https://github.com/uchicago-gw/lectures-fall2018/blob/master/lecture_notes/stationary_gaussian_timeseries.md)
     * further reading
         * ...
+
   * Dec 5: Monte-Carlo Methods and the Hubble Constant
     * Lecturer: [Maya Fishbach](mfishbach@uchicago.edu)
     * lecture notes: ...
