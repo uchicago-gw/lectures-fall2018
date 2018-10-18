@@ -12,6 +12,8 @@ The modules contained herein are meant to aid students through a series of lectu
 Some lecture notes can be found within [this repostitory](https://github.com/uchicago-gw/lectures-fall2018/tree/master/lecture_notes).
 Others can be found in [Google Drive](https://drive.google.com/drive/folders/1xwmOKxjHyTkvSpeAOS_-NaUv-15uKVEA).
 
+A great list of papers about GW measurements is available at [papers.ligo.org](https://www.ligo.caltech.edu/page/detection-companion-papers).
+
 ## syllabus and futher reading
 
   * Oct 17: Introduction
@@ -19,7 +21,8 @@ Others can be found in [Google Drive](https://drive.google.com/drive/folders/1xw
     * lecture notes
       * [google sheet for zero-crossing times](https://docs.google.com/spreadsheets/d/1-KZ8zCI0sLLdETamXjnFnUk6ODnxpDhkcZ6ssXGQuc4/edit?usp=sharing)
     * further reading
-        * ...
+        * [GW150914 detection PRL](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.116.061102)
+        * [The basic physics of the binary black hole merger GW150914](https://arxiv.org/abs/1608.01940)
 
   * Oct 24: Stellar Structure and Neutron Stars
     * Lecturer: [Phil Landry](landryp@uchicago.edu)
