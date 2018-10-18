@@ -19,6 +19,7 @@ A great list of papers about GW measurements is available at [papers.ligo.org](h
   * Oct 17: Introduction
     * Lecturer: [Zoheyr Doctor](zdoctor@uchicago.edu)
     * lecture notes
+      * [notebook](https://github.com/uchicago-gw/lectures-fall2018/blob/master/lecture_notes/MassRadiusGW150914Class.ipynb)
       * [google sheet for zero-crossing times](https://docs.google.com/spreadsheets/d/1-KZ8zCI0sLLdETamXjnFnUk6ODnxpDhkcZ6ssXGQuc4/edit?usp=sharing)
     * further reading
         * [GW150914 detection PRL](https://journals.aps.org/prl/abstract/10.1103/PhysRevLett.116.061102)
