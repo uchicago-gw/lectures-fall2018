@@ -17,6 +17,7 @@ Others can be found in [Google Drive](https://drive.google.com/drive/folders/1xw
   * Oct 17: Introduction
     * Lecturer: [Zoheyr Doctor](zdoctor@uchicago.edu)
     * lecture notes: ...
+    * Link to google sheet for zero-crossing times: https://docs.google.com/spreadsheets/d/1-KZ8zCI0sLLdETamXjnFnUk6ODnxpDhkcZ6ssXGQuc4/edit?usp=sharing
     * further reading
         * ...
 
