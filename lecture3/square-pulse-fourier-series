@@ -1,0 +1,120 @@
+#!/usr/bin/env python
+
+"""a simple script to demonstrate how to numerically compute fourier coefficients for a function
+"""
+__author__ = "Reed Essick <reed.essick@kicp.uchicago.edu>"
+
+#-------------------------------------------------
+
+import numpy as np
+
+import matplotlib
+matplotlib.use("Agg")
+from matplotlib import pyplot as plt
+
+from argparse import ArgumentParser
+
+#-------------------------------------------------
+
+FIGNAME = 'square-pulse-fourier-series-%s.png'
+
+#-------------------------------------------------
+
+parser = ArgumentParser()
+
+parser.add_argument('N', type=int, help='the maximum number of fourier compenents to keep in your iteration')
+
+parser.add_argument('-n', '--num-points', default=100, type=int, help='number of plotting points')
+parser.add_argument('-T', '--period', default=1., type=float)
+
+parser.add_argument('-v', '--verbose', default=False, action='store_true')
+
+args = parser.parse_args()
+
+#-------------------------------------------------
+
+# first, let's define our function. We'll use a simple square pulse
+def func(t, T=1.):
+    """expects t to be a np.ndarray"""
+    t = t%T                       # take the remainder because this is a periodic function
+    return (t<0.5*T).astype(int)  # define a square pulse that lasts have the period
+
+def inner(t, a, b, T=1.):
+    return (2./T)*np.trapz(a*b, x=t)
+
+def plot(t, f, f_approx):
+    fig = plt.figure()
+    ax = fig.gca()
+
+    ax.plot(t, f)
+    ax.plot(t, f_approx)
+
+    ax.set_xlabel('time')
+    return fig
+
+#-------------------------------------------------
+
+# now, let's make some plots, computing fourier coefficients as we go
+
+### plot the function itself
+t = np.linspace(0, args.period, args.num_points)
+f = func(t, T=args.period)
+
+### the zero's order is simply the function's mean (DC-component)
+fo = inner(t, 1, f, T=args.period)/2.
+f_approx = fo*np.ones(args.num_points)
+
+fig = plot(t, f, f_approx)
+figname = FIGNAME%0
+if args.verbose:
+    print(figname)
+fig.savefig(figname)
+plt.close(fig)
+
+### iterate through the rest of the terms, computing coefficients and adding them to the approximation
+coeffs = []
+for n in range(1, args.N):
+    freq = 2*np.pi*n/args.period
+    c = np.cos(freq*t)
+    s = np.sin(freq*t)
+
+    a = inner(t, c, f, T=args.period)
+    b = inner(t, s, f, T=args.period)
+    f_approx += a*c + b*s
+
+    coeffs.append( (a, b) )
+
+    fig = plot(t, f, f_approx)
+    figname = FIGNAME%n
+    if args.verbose:
+        print(figname)
+    fig.savefig(figname)
+    plt.close(fig)
+
+### make a spectrum
+fig = plt.figure()
+ax_C = plt.subplot(2,1,1)
+ax_p = plt.subplot(2,1,2)
+
+ax_C.plot(0, fo, marker='o', color='b')
+ax_p.plot(0, 0, marker='o', color='r')
+for n, (a, b) in enumerate(coeffs):
+    freq = (n+1)/args.period
+    ax_C.plot(freq, (a**2+b**2)**0.5, marker='o', color='b')
+    ax_p.plot(freq, np.arctan2(b, a)*180/np.pi, marker='o', color='r')
+
+ax_C.set_yscale('log')
+
+ax_C.set_ylabel('C')
+ax_p.set_ylabel('$\phi$')
+ax_p.set_xlabel('frequency')
+
+ax_p.set_ylim(ymin=-91, ymax=91)
+for ax in [ax_C, ax_p]:
+    ax.set_xlim(xmin=-0.5, xmax=(args.N+0.5)/args.period) 
+
+figname = FIGNAME%'spectrum'
+if args.verbose:
+    print(figname)
+fig.savefig(figname)
+plt.close(fig)

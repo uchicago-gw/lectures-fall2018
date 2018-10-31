@@ -18,9 +18,9 @@ Mathematical Concepts
 
 Applications
 
-  * make a "peanuts adult synthesizer filter"
-  * image compression
+  * bandpass freq-domain filtering
   * whitening/noise-suppression
+  * image compression
 
 Software Libraries
 

@@ -1,0 +1,81 @@
+#!/usr/bin/env python
+
+"""a simple script to demonstrate how to numerically compute fourier coefficients for a function
+"""
+__author__ = "Reed Essick <reed.essick@kicp.uchicago.edu>"
+
+#-------------------------------------------------
+
+import numpy as np
+
+import matplotlib
+matplotlib.use("Agg")
+from matplotlib import pyplot as plt
+
+from argparse import ArgumentParser
+
+#-------------------------------------------------
+
+FIGNAME = 'square-pulse-fft%s.png'
+
+#-------------------------------------------------
+
+parser = ArgumentParser()
+
+parser.add_argument('-r', '--sample-rate', default=128., type=int, help='number of plotting points')
+parser.add_argument('-T', '--period', default=1., type=float)
+
+parser.add_argument('-v', '--verbose', default=False, action='store_true')
+
+parser.add_argument('-t', '--tag', default='', type=str)
+
+args = parser.parse_args()
+
+if args.tag:
+    args.tag = "-"+args.tag
+
+#-------------------------------------------------
+
+# first, let's define our function. We'll use a simple square pulse
+def func(t, T=1.):
+    """expects t to be a np.ndarray"""
+    t = t%T                       # take the remainder because this is a periodic function
+    return (t<0.5*T).astype(int)  # define a square pulse that lasts have the period
+
+#-------------------------------------------------
+
+# now, let's make some plots, computing fourier coefficients as we go
+
+### plot the function itself
+N = int(args.period*args.sample_rate)
+dt = 1./args.sample_rate
+df = 1./args.period
+
+t = np.arange(0, args.period, dt)
+x = func(t, T=args.period)
+
+f = np.fft.fftshift( np.fft.fftfreq(N, d=dt) )
+X = np.fft.fftshift( np.fft.fft(x, n=N) )
+
+### the zero's order is simply the function's mean (DC-component)
+fig = plt.figure()
+ax_c = plt.subplot(2,1,1)
+ax_p = plt.subplot(2,1,2)
+
+ax_c.plot(f, np.abs(X))
+ax_p.plot(f, np.arctan2(X.imag, X.real)*180/np.pi)
+
+#ax_c.set_yscale('log')
+
+ax_p.set_xlabel('frequency')
+ax_c.set_ylabel('amplitude')
+ax_p.set_ylabel('phase')
+
+for ax in [ax_c, ax_p]:
+    ax.set_xlim(xmin=-0.5*args.sample_rate, xmax=0.5*args.sample_rate)
+
+figname = FIGNAME%args.tag
+if args.verbose:
+    print(figname)
+fig.savefig(figname)
+plt.close(fig)
