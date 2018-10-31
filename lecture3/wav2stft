@@ -1,0 +1,72 @@
+#!/usr/bin/env python
+
+"""a quick script to turn audio files into spectrograms
+"""
+
+__author__ = "Reed Essick <reed.essick@kicp.uchicago.edu>"
+
+#-------------------------------------------------
+
+from scipy.io import wavfile
+
+import numpy as np
+import matplotlib
+matplotlib.use("Agg")
+from matplotlib import pyplot as plt
+
+from argparse import ArgumentParser
+
+### non-standard libraries
+import filters
+
+#-------------------------------------------------
+
+parser = ArgumentParser()
+
+parser.add_argument('source', type=str)
+
+parser.add_argument('--tukey-alpha', default=0.1, type=float,
+    help='the tukey alpha value used to generate window functions')
+parser.add_argument('--seglen', default=0.1, type=float)
+
+parser.add_argument('-v', '--verbose', default=False, action='store_true')
+parser.add_argument('--fmax', default=np.infty, type=float)
+
+args = parser.parse_args()
+target = args.source[:-4]+'-stft-%d.png'
+
+#-------------------------------------------------
+
+if args.verbose:
+    print('reading data from: '+args.source)
+fs, data = wavfile.read(args.source)
+N, ndim = data.shape
+n = min(N, int(args.seglen*fs))
+
+w = filters.tukey(n, alpha=args.tukey_alpha)
+
+num_seg = N//n
+t = (0.5+np.arange(num_seg))*args.seglen 
+f = np.fft.fftshift(np.fft.fftfreq(n, d=1./fs))
+fmax = min(args.fmax, 0.5*fs)
+truth = (np.abs(f)<=fmax)
+f = f[truth]
+
+DATA = np.empty((np.sum(truth), num_seg), dtype=float)
+for d in range(ndim):
+    for i in range(num_seg):
+        DATA[:,i] = np.log(np.fft.fftshift(np.fft.fft(data[i*n:(i+1)*n,d]*w))[truth])
+
+    plt.pcolormesh(t, f[::-1], np.abs(DATA))
+
+    plt.xlim(xmin=t[0], xmax=t[-1])
+    plt.ylim(ymin=0, ymax=fmax)
+
+    plt.xlabel('time')
+    plt.ylabel('frequency')
+
+    figname = target%d
+    if args.verbose:
+        print('saving: '+figname)
+    plt.savefig(figname)
+    plt.close()

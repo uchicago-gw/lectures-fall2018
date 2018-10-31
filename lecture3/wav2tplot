@@ -1,0 +1,59 @@
+#!/usr/bin/env python
+
+"""a quick script to turn audio files into time-domain plots
+"""
+
+__author__ = "Reed Essick <reed.essick@kicp.uchicago.edu>"
+
+#-------------------------------------------------
+
+from scipy.io import wavfile
+
+import numpy as np
+import matplotlib
+matplotlib.use("Agg")
+from matplotlib import pyplot as plt
+
+from argparse import ArgumentParser
+
+### non-standard libraries
+import filters
+
+#-------------------------------------------------
+
+parser = ArgumentParser()
+
+parser.add_argument('source', type=str)
+
+parser.add_argument('--tukey-alpha', default=0.1, type=float,
+    help='the tukey alpha value used to generate window functions')
+parser.add_argument('--seglen', default=0.1, type=float)
+
+parser.add_argument('-v', '--verbose', default=False, action='store_true')
+
+args = parser.parse_args()
+target = args.source[:-4]+'-tplot.png'
+
+#-------------------------------------------------
+
+if args.verbose:
+    print('reading data from: '+args.source)
+fs, data = wavfile.read(args.source)
+N, ndim = data.shape
+
+w = filters.tukey(N, alpha=args.tukey_alpha)
+
+fig = plt.figure()
+ax = fig.gca()
+
+t = 1.*np.arange(0, N)/fs
+for d in range(ndim):
+    ax.plot(t, data[:,d]*w, alpha=0.5)
+
+ax.set_xlabel('time')
+ax.set_xlim(xmin=0, xmax=1.*N/fs)
+
+if args.verbose:
+    print('saving: '+target)
+fig.savefig(target)
+plt.close(fig)
