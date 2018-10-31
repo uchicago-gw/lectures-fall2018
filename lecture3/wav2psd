@@ -28,8 +28,10 @@ parser.add_argument('source', type=str)
 
 parser.add_argument('-v', '--verbose', default=False, action='store_true')
 
-parser.add_argument('--tukey-alpha', default=0.1, type=float,
+parser.add_argument('--tukey-alpha', default=filters.DEFAULT_ALPHA, type=float,
     help='the tukey alpha value used to generate window functions')
+
+parser.add_argument('--seglen', default=1., type=float)
 
 parser.add_argument('--lowpass', default=[], action='append', type=float, nargs=2,
     help="--lowpass rolloff_freq butterworth_order")
@@ -40,12 +42,57 @@ parser.add_argument('-p', '--plot', default=False, action='store_true',
     help="generate a bunch of plots for this data")
 
 args = parser.parse_args()
-target = args.source[:-4]+'-psd.txt' ### write the PSD to an ascii file...
+target = args.source[:-4]+'-psd.npy' ### write the PSD to an ascii file...
 
 #-------------------------------------------------
 
-raise NotImplementedError('WRITE ME! \
-chunk up the data
-FFT each chunk
-apply filters
-estimate PSD as an average')
+if args.verbose:
+    print('reading data from: '+args.source)
+fs, data = wavfile.read(args.source)
+N = len(data)
+n = min(int(args.seglen*fs), N) # the number of samples per seglen
+ndim = data.shape[1]
+
+w = filters.tukey(n, alpha=args.tukey_alpha)
+
+f = np.fft.fftshift(np.fft.fftfreq(n, d=1./fs))
+F = np.ones(n, dtype=float)
+for froll, m in args.lowpass:
+    F *= filters.lowpass(f, froll, m)
+for froll, m in args.highpass:
+    F *= filters.highpass(f, froll, m)
+F = F**2
+
+i = 0
+ans = np.zeros((n, ndim+1), dtype=float)
+while i < N-n:
+    for d in range(ndim):
+        ans[:,d+1] += np.abs(np.fft.fftshift(np.fft.fft(data[i:i+n,d]*w)))**2 * F
+    i += n
+for d in range(ndim):
+    ans[:,d] /= np.max(ans[:,d])
+
+ans[:,0] = f
+
+if args.verbose:
+    print('saving psd to: '+target)
+np.save(target, ans)
+
+if args.plot:
+    fig = plt.figure()
+    ax = fig.gca()
+
+    for d in range(ndim):
+        ax.plot(f, ans[:, d], alpha=0.5)
+
+    ax.set_xlabel('frequency')
+    ax.set_ylabel('PSD')
+
+    ax.set_yscale('log')
+    ax.set_xlim(xmin=0., xmax=+0.5*fs)
+
+    figname = target[:-3]+'png'
+    if args.verbose:
+        print('saving: '+figname)
+    fig.savefig(figname)
+    plt.close(fig)
