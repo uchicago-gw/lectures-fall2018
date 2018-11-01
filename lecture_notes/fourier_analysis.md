@@ -1,5 +1,7 @@
 # Basics of (Discrete) Fourier Analysis
 
+A handwritten set of notes with more detail (and math!) is available [here](https://github.com/uchicago-gw/lectures-fall2018/blob/master/lecture_notes/fourier_analysis-handwritten.pdf).
+
 Mathematical Concepts
 
   * Fourier Series
