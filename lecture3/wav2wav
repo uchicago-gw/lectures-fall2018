@@ -73,7 +73,7 @@ if args.whiten is not None:
         psd[:,d] /= np.interp(args.whiten_unit_gain_frequency, f, psd[:,d])
 
 else:
-    psd = np.array([np.ones(n, dtype=float) for i in xrange(ndim)])
+    psd = np.ones((n,ndim), dtype=float)
 
 DATA = np.empty((n, ndim), dtype=data.dtype)
 for d in range(ndim):
