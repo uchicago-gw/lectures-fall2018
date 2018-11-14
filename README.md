@@ -37,7 +37,7 @@ A great list of papers about GW measurements is available at [papers.ligo.org](h
     * further reading
         * ...
 
-  * Nov 7: Initial Value Problems and GW Sources
+  * Nov 7: Machine Learning
     * Lecturer: [Zoheyr Doctor](zdoctor@uchicago.edu)
     * lecture notes: ...
     * further reading
