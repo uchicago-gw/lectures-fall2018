@@ -1,0 +1,48 @@
+#!/usr/bin/env python
+
+"""a quick script to turn audio files into time-domain plots
+"""
+
+__author__ = "Reed Essick <reed.essick@kicp.uchicago.edu>"
+
+#-------------------------------------------------
+
+from scipy.io import wavfile
+
+import numpy as np
+
+from argparse import ArgumentParser
+
+### non-standard libraries
+import filters
+
+#-------------------------------------------------
+
+parser = ArgumentParser()
+
+parser.add_argument('source1', type=str)
+parser.add_argument('source2', type=str)
+parser.add_argument('target', type=str)
+
+parser.add_argument('-v', '--verbose', default=False, action='store_true')
+
+args = parser.parse_args()
+
+#-------------------------------------------------
+
+if args.verbose:
+    print('reading data from: '+args.source1)
+fs1, data1 = wavfile.read(args.source1)
+N1, ndim1 = data1.shape
+
+if args.verbose:
+    print('reading data from: '+args.source2)
+fs2, data2 = wavfile.read(args.source2)
+N2, ndim2 = data2.shape
+
+assert (fs1==fs2) and (ndim1==ndim2)
+
+if args.verbose:
+    print('writing data to: '+args.target)
+N = min(N1, N2)
+wavfile.write(args.target, fs1, data1[:N,:]+data2[:N,:])

@@ -1,0 +1,123 @@
+#!/usr/bin/env python
+
+"""a quick script to filter audio files
+"""
+
+__author__ = "Reed Essick <reed.essick@kicp.uchicago.edu>"
+
+#-------------------------------------------------
+
+from scipy.io import wavfile
+
+import numpy as np
+import matplotlib
+matplotlib.use("Agg")
+from matplotlib import pyplot as plt
+
+from argparse import ArgumentParser
+
+### non-standard libraries
+import filters
+
+#-------------------------------------------------
+
+parser = ArgumentParser()
+
+parser.add_argument('source', type=str)
+parser.add_argument('target', type=str)
+
+parser.add_argument('-v', '--verbose', default=False, action='store_true')
+
+parser.add_argument('--tukey-alpha', default=0.1, type=float,
+    help='the tukey alpha value used to generate window functions')
+
+parser.add_argument('--lowpass', default=[], action='append', type=float, nargs=2,
+    help="--lowpass rolloff_freq butterworth_order")
+parser.add_argument('--highpass', default=[], action='append', type=float, nargs=2,
+    help="--highpass rolloff_freq butterworth_order")
+
+parser.add_argument('--whiten', default=None, type=str,
+    help="read the PSD from this file and use it to whiten the input file")
+parser.add_argument('--whiten-unit-gain-frequency', default=500., type=float,
+    help='re-scale the whitener so we get unit gain here')
+
+parser.add_argument('-p', '--plot', default=False, action='store_true',
+    help="generate a bunch of plots for this data")
+
+args = parser.parse_args()
+
+#-------------------------------------------------
+
+if args.verbose:
+    print('reading data from: '+args.source)
+fs, data = wavfile.read(args.source)
+n, ndim = data.shape
+
+w = filters.tukey(n, alpha=args.tukey_alpha)
+
+f = np.fft.fftshift(np.fft.fftfreq(n, d=1./fs))
+F = np.ones(n, dtype=float)
+for froll, m in args.lowpass:
+    F *= filters.lowpass(f, froll, m)
+for froll, m in args.highpass:
+    F *= filters.highpass(f, froll, m)
+
+if args.whiten is not None:
+    if args.verbose:
+        print('loading PSD from: '+args.whiten)
+    ans = np.load(args.whiten)
+    _f = ans[:,0]
+    psd = np.empty((n, ndim), dtype=float)
+    for d in xrange(ndim):
+        psd[:,d] = np.interp(f, _f, ans[:,d])
+        psd[:,d] /= np.interp(args.whiten_unit_gain_frequency, f, psd[:,d])
+
+else:
+    psd = np.ones((n,ndim), dtype=float)
+
+DATA = np.empty((n, ndim), dtype=data.dtype)
+for d in range(ndim):
+    DATA[:,d] = (np.fft.ifft( np.fft.ifftshift( np.fft.fftshift( np.fft.fft(data[:,d]*w) ) * F / psd[:,d]**0.5 ) ).real).astype(data.dtype)
+
+if args.verbose:
+    print('writing filtered data to: '+args.target)
+wavfile.write(args.target, fs, DATA)
+
+if args.plot:
+    fig = plt.figure()
+    ax_old = plt.subplot(2,2,3)
+    ax_new = plt.subplot(2,2,1)
+    AX_old = plt.subplot(2,2,4)
+    AX_new = plt.subplot(2,2,2)
+
+    t = np.arange(0, 1.*n/fs, 1./fs)
+    for d in range(ndim):
+        ax_old.plot(t, data[:,d], alpha=0.5)
+        ax_new.plot(t, DATA[:,d], alpha=0.5)
+
+        AX_old.plot(f, np.abs(np.fft.fftshift(np.fft.fft(data[:,d]*w))), alpha=0.5)
+        AX_new.plot(f, np.abs(np.fft.fftshift(np.fft.fft(DATA[:,d]*w))), alpha=0.5)
+
+    ax_new.set_xlabel('time')
+    ax_new.set_ylabel('new')
+    ax_old.set_ylabel('old')
+
+    AX_new.set_ylabel('frequency')
+
+    ax_new.set_xlim(xmin=0, xmax=1.*n/fs)
+    ax_old.set_xlim(ax_new.get_xlim())
+
+    AX_new.set_xlim(xmin=0, xmax=0.5*fs)
+    AX_old.set_xlim(AX_new.get_xlim())
+
+    AX_new.set_yscale('log')
+    AX_old.set_yscale('log')
+
+    AX_new.yaxis.tick_right()
+    AX_old.yaxis.tick_right()
+
+    figname = args.target+'.png'
+    if args.verbose:
+        print('saving: '+figname)
+    fig.savefig(figname)
+    plt.close(fig)
