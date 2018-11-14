@@ -1,1 +1,1 @@
-hi
+Use `recording_utils.py` to generate audio clips of snaps and claps.  If you run `python recording_utils.py`, you'll be prompted to do a 1 second recording of a snap or a clap.  Then you can press y or n to record another one until you have enough snaps and claps.  Make sure to change the path if needed inside the script so as not to clobber existing audio clips.  I recommend making a new folder `audio_new` and then changing the path to point to `audio_new` in the script.
