@@ -23,4 +23,4 @@
 
 """Daniel's module
 """
-__author__ "Daniel Holz <holz@uchicago.edu>"
+__author__ = "Daniel Holz <holz@uchicago.edu>"
