@@ -32,7 +32,7 @@ Others can be found in [Google Drive](https://drive.google.com/drive/folders/1xw
     * further reading
         * ...
 
-  * Nov 7: Initial Value Problems and GW Sources
+  * Nov 7: Machine Learning
     * Lecturer: [Zoheyr Doctor](zdoctor@uchicago.edu)
     * lecture notes: ...
     * further reading
