@@ -74,9 +74,10 @@ Please check with one of the lecturers if you have a specific idea you'd like to
 Below, we've listed a few possibilities.
 
   * a few-parameter search for Gravitational Waves in stationary colored Gaussian noise
+  * sampling from a few-parameter posterior distribution for a real GW signal using [public data](https://www.gw-openscience.org/events/)
   * inferring Hubble's constant using real, publicly available [GW170817 data](https://www.gw-openscience.org/events/GW170817/)
   * determining the mass-radius, mass-lambda curves for a few neutron star equations of state
-  * ...
+  * anything else you can think of; just run it by us first!
 
 ## installation
 
