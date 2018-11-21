@@ -72,12 +72,24 @@ A great list of papers about GW measurements is available at [papers.ligo.org](h
 As part of this lecture series, you will be expected to complete a small project.
 You must tell us what you plan to do for a final project by **Friday Nov 30, 2018** and final reports will be due on **Monday Dec 19, 2018**.
 Please check with one of the lecturers if you have a specific idea you'd like to pursue.
-Below, we've listed a few possibilities.
+Below, we've listed a few possibilities along with suggested steps
 
   * a few-parameter search for Gravitational Waves in stationary colored Gaussian noise
+    * estimate the power spectral density of a timeseries (see [lecture 3](https://github.com/uchicago-gw/lectures-fall2018/tree/master/lecture3))
+    * perform a matched-filter search: either convolution in the time domain or multiplication in the frequency domain
+    * identify the time and rough parameters of the best-fit template for real data
   * sampling from a few-parameter posterior distribution for a real GW signal using [public data](https://www.gw-openscience.org/events/)
+    * estimate the power spectral density (PSD) of a timeseries (see [lecture 3](https://github.com/uchicago-gw/lectures-fall2018/tree/master/lecture3))
+    * compute the likelihood for observed data given the PSD and waveform parameters
+    * use [emcee](http://dfm.io/emcee/current/) or another stochastic sampler or sampling method to generate the posterior distribution
   * inferring Hubble's constant using real, publicly available [GW170817 data](https://www.gw-openscience.org/events/GW170817/)
-  * using real [GW170817 tidal deformability data](https://dcc.ligo.org/LIGO-P1800115/public) to rank a few [candidate neutron star equations of state](http://xtreme.as.arizona.edu/NeutronStars/) by relative likelihood
+    * extract the 3-dimensional source localization for GW170817
+    * estimate the redshift and redshift uncertainty of the host galaxy
+    * marginalize away nuisance parameters to estimate the posterior distribution for the hubble constant
+  * using real [GW170817 tidal deformability data](https://dcc.ligo.org/LIGO-P1800115/public) to rank a few [candidate neutron star equations of state](http://xtreme.as.arizona.edu/NeutronStars/) (EOS) by relative likelihood
+    * estimate the likelihood from the publicly available data (a kernel density estimate is a good idea!)
+    * integrate each EOS to obtain mass-tidal deformability curves
+    * numerically estiamte the bayesian evidence for each EOS using the likelihood
   * anything else you can think of; just run it by us first!
   
 Projects should be relativley short and take you no more than 10 hours to complete.
