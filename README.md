@@ -67,9 +67,10 @@ A great list of papers about GW measurements is available at [papers.ligo.org](h
     * further reading
         * ...
 
-### possible final projects
+## final projects
 
 As part of this lecture series, you will be expected to complete a small project.
+You must tell us what you plan to do for a final project by **Friday Nov 30, 2018** and final reports will be due on **Monday Dec 19, 2018**.
 Please check with one of the lecturers if you have a specific idea you'd like to pursue.
 Below, we've listed a few possibilities.
 
@@ -78,6 +79,19 @@ Below, we've listed a few possibilities.
   * inferring Hubble's constant using real, publicly available [GW170817 data](https://www.gw-openscience.org/events/GW170817/)
   * determining the mass-radius, mass-lambda curves for a few neutron star equations of state
   * anything else you can think of; just run it by us first!
+  
+Projects should be relativley short and take you no more than 10 hours to complete.
+Reports should be 2-3 pages written in the style of a short research paper (a.k.a., a [letter](https://journals.aps.org/prl/authors)).
+Please include a brief introduction a paragraph or two of background material describing your project before presenting your results.
+You should include citations where appropriate (i.e., cite [losc.ligo.org](https://losc.ligo.org/) if you use real GW data) and include a bibliography, although the bibliography will not count toward the length of your  report.
+
+In addition to describing your results with at least one figure, please submit the source code you develop during the project.
+Code can be in whatever format is easiest for you as long as it can be read without undue effort (i.e., no compiled code).
+
+Projects are meant to give you the chance to "get your hands dirty" with real data or real applications.
+Be sure to show your work with comments in your code and describe whatever conclusions you draw.
+If you're not sure about something, describe how you tested your hypotheses and explored.
+Your approach and thought process count more than the final numbers you produce!
 
 ## installation
 
