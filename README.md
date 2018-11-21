@@ -77,7 +77,7 @@ Below, we've listed a few possibilities.
   * a few-parameter search for Gravitational Waves in stationary colored Gaussian noise
   * sampling from a few-parameter posterior distribution for a real GW signal using [public data](https://www.gw-openscience.org/events/)
   * inferring Hubble's constant using real, publicly available [GW170817 data](https://www.gw-openscience.org/events/GW170817/)
-  * determining the mass-radius, mass-lambda curves for a few neutron star equations of state
+  * using real [GW170817 tidal deformability data](https://dcc.ligo.org/LIGO-P1800115/public) to rank a few [candidate neutron star equations of state](http://xtreme.as.arizona.edu/NeutronStars/) by relative likelihood
   * anything else you can think of; just run it by us first!
   
 Projects should be relativley short and take you no more than 10 hours to complete.
