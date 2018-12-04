@@ -70,7 +70,7 @@ A great list of papers about GW measurements is available at [papers.ligo.org](h
 ## final projects
 
 As part of this lecture series, you will be expected to complete a small project.
-You must tell us what you plan to do for a final project by **Friday Nov 30, 2018** and final reports will be due on **Monday Dec 19, 2018**.
+You must tell us what you plan to do for a final project by **Friday Nov 30, 2018** and final reports will be due on **Wednesday Dec 19, 2018**.
 Please check with one of the lecturers if you have a specific idea you'd like to pursue.
 Below, we've listed a few possibilities along with suggested steps
 
